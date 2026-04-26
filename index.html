@@ -3,255 +3,1294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Pioneers - Home</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Global Pioneers Corporation | Designing Excellence. Building the Future.</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.1.0/latin.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#0f2a5e',950:'#091833' },
+                        accent: { 50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e',900:'#78350f' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+        
+        .hero-bg {
+            background-image: url('https://image.qwenlm.ai/public_source/99a96937-7322-48a6-af85-e33b1211acfe/1f06f99d8-7425-46c5-b964-3cf5267e2e81.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in-left { opacity: 0; transform: translateX(-60px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in-left.visible { opacity: 1; transform: translateX(0); }
+        .fade-in-right { opacity: 0; transform: translateX(60px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+        .scale-in { opacity: 0; transform: scale(0.9); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .scale-in.visible { opacity: 1; transform: scale(1); }
+        
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 25px 60px rgba(0,0,0,0.1); }
+        .service-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project-card:hover img { transform: scale(1.08); }
+        .project-card:hover .project-overlay { opacity: 1; }
+        .project-card img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project-overlay { transition: opacity 0.4s ease; }
+        
+        .nav-scrolled { background: rgba(255,255,255,0.97) !important; backdrop-filter: blur(20px); box-shadow: 0 1px 30px rgba(0,0,0,0.08); }
+        .nav-scrolled .nav-link { color: #1a1a2e !important; }
+        .nav-scrolled .nav-logo-text { color: #0f2a5e !important; }
+        .nav-scrolled .nav-phone { color: #2563eb !important; }
+        
+        .hero-overlay { background: linear-gradient(135deg, rgba(15,42,94,0.82) 0%, rgba(15,42,94,0.55) 50%, rgba(15,42,94,0.35) 100%); }
+        
+        .section-divider { width: 60px; height: 4px; border-radius: 2px; }
+        
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease; }
+        .faq-answer.open { max-height: 300px; }
+        .faq-icon { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .faq-icon.rotated { transform: rotate(180deg); }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37,99,235,0.35);
+        }
+        .btn-accent {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-accent:hover {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245,158,11,0.35);
+        }
+        .btn-outline {
+            border: 2px solid rgba(255,255,255,0.7);
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .stat-number { font-variant-numeric: tabular-nums; }
+        
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        
+        @keyframes pulse-glow { 0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0.4)} 50%{box-shadow:0 0 0 15px rgba(37,99,235,0)} }
+        
+        .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .mobile-menu.open { transform: translateX(0); }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pattern-bg {
+            background-image: radial-gradient(circle at 1px 1px, rgba(59,130,246,0.08) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
 </head>
-<body>
-    <header id="header">
-        <div class="container header-container">
-            <div class="logo">
-                <img src="assets/glologo.jpg" alt="Global Pioneers" class="logo-img">
-                <span>Global<span>Pioneers</span></span>
+<body class="bg-white text-gray-800">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 lg:h-24">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-blue-500/30 transition-shadow duration-300">
+                        <svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"/>
+                        </svg>
+                    </div>
+                    <div class="nav-logo-text text-white transition-colors duration-300">
+                        <span class="text-lg lg:text-xl font-bold leading-tight block">Global Pioneers</span>
+                        <span class="text-[10px] lg:text-xs font-medium opacity-70 tracking-widest uppercase">Corporation</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <a href="#home" class="nav-link px-4 py-2 text-sm font-medium text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-300">Home</a>
+                    <a href="#about" class="nav-link px-4 py-2 text-sm font-medium text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-300">About</a>
+                    <a href="#services" class="nav-link px-4 py-2 text-sm font-medium text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-300">Services</a>
+                    <a href="#projects" class="nav-link px-4 py-2 text-sm font-medium text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-300">Projects</a>
+                    <a href="#faq" class="nav-link px-4 py-2 text-sm font-medium text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-300">FAQ</a>
+                    <a href="#contact" class="nav-link px-4 py-2 text-sm font-medium text-white/90 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-300">Contact</a>
+                </div>
+
+                <!-- Right side -->
+                <div class="hidden lg:flex items-center space-x-5">
+                    <a href="tel:+211983998399" class="nav-phone flex items-center space-x-2 text-white/90 hover:text-white transition-colors duration-300">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                        </svg>
+                        <span class="text-sm font-semibold">+211 983 998 399</span>
+                    </a>
+                    <a href="#contact" class="btn-accent text-white px-6 py-3 rounded-xl text-sm font-bold shadow-lg">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white" onclick="toggleMobileMenu()">
+                    <svg id="menuIcon" class="w-6 h-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                    </svg>
+                    <svg id="closeIcon" class="w-6 h-6 hidden transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
             </div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li class="dropdown">
-                        <a href="services.html" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="services.html#architectural">Architectural & Interior Design</a></li>
-                            <li><a href="services.html#plan-designs">2D & 3D Plan Designs</a></li>
-                            <li><a href="services.html#boq">Bill of Quantities (BOQ)</a></li>
-                            <li><a href="services.html#cost-estimates">Construction Cost Estimates</a></li>
-                            <li><a href="services.html#urban-planning">Urban Planning</a></li>
-                            <li><a href="services.html#general-construction">General Construction</a></li>
-                            <li><a href="services.html#roofing">Roofing & Structure Detailing</a></li>
-                            <li><a href="services.html#plumbing">Plumbing Works</a></li>
-                            <li><a href="services.html#finishing">Finishing & Renovation</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-            </nav>
         </div>
-    </header>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Building the Future with <br>Precision & Innovation</h1>
-                <div class="typing-container">
-                    <span class="typed-text"></span><span class="cursor">|</span>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white shadow-2xl z-50 lg:hidden">
+            <div class="p-6">
+                <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+                <div class="mt-12 space-y-2">
+                    <a href="#home" onclick="toggleMobileMenu()" class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-all duration-200">Home</a>
+                    <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-all duration-200">About</a>
+                    <a href="#services" onclick="toggleMobileMenu()" class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-all duration-200">Services</a>
+                    <a href="#projects" onclick="toggleMobileMenu()" class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-all duration-200">Projects</a>
+                    <a href="#faq" onclick="toggleMobileMenu()" class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-all duration-200">FAQ</a>
+                    <a href="#contact" onclick="toggleMobileMenu()" class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl font-medium transition-all duration-200">Contact</a>
                 </div>
-                <div class="hero-buttons">
-                    <a href="contact.html" class="btn">Get Free Quotes <i class="fas fa-arrow-right"></i></a>
-                    <a href="contact.html" class="btn btn-outline-light">View Our Work</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ABOUT PREVIEW (with Learn More button) -->
-        <section id="about-preview" class="about-preview">
-            <div class="container">
-                <div class="about-grid">
-                    <div>
-                        <h2>About Global Pioneers</h2>
-                        <p class="lead" style="font-size:1.3rem;">Architectural & Construction Experts in South Sudan — Juba • Wau • Tonj</p>
-                        <p>We deliver innovative, cost-effective, high-quality solutions across the region. Professionalism, accuracy, and client satisfaction are our pillars. With over a decade of experience, we have built hospitals, schools, and commercial complexes that stand as landmarks.</p>
-                        <a href="about.html" class="btn" style="margin-top:20px;">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="about-image">
-                        <img src="assets/homes.jpg" alt="Construction site">
-                    </div>
+                <div class="mt-8 pt-6 border-t border-gray-100">
+                    <a href="tel:+211983998399" class="flex items-center space-x-3 px-4 py-3 text-gray-600">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                        </svg>
+                        <span class="font-semibold">+211 983 998 399</span>
+                    </a>
+                    <a href="#contact" onclick="toggleMobileMenu()" class="btn-primary mt-4 block text-center text-white px-6 py-3 rounded-xl text-sm font-bold shadow-lg">Get Quote</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <!-- WHY CHOOSE US -->
-        <section class="why-choose">
-            <div class="container text-center">
-                <h2>Why Choose Us</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-hard-hat"></i>
-                        <h3>Expert Team</h3>
-                        <p>Certified engineers and architects with international experience.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-clock"></i>
-                        <h3>On Time Delivery</h3>
-                        <p>We respect deadlines and deliver ahead of schedule.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-cogs"></i>
-                        <h3>Innovative Solutions</h3>
-                        <p>Modern techniques & sustainable materials for every project.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-handshake"></i>
-                        <h3>Client Satisfaction</h3>
-                        <p>We build lasting relationships through transparency and quality.</p>
-                    </div>
+    <!-- Mobile Menu Overlay -->
+    <div id="menuOverlay" class="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 hidden lg:hidden" onclick="toggleMobileMenu()"></div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg relative min-h-screen flex items-center">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
+            <div class="max-w-3xl">
+                <div class="fade-in inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-8">
+                    <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+                    <span class="text-white/90 text-sm font-medium">South Sudan's Leading Construction Company</span>
+                </div>
+                <h1 class="fade-in text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6" style="transition-delay:0.1s">
+                    Designing Excellence.<br>
+                    <span class="text-amber-400">Building the Future.</span>
+                </h1>
+                <p class="fade-in text-lg lg:text-xl text-white/80 leading-relaxed mb-10 max-w-2xl" style="transition-delay:0.2s">
+                    Over a decade of delivering innovative, cost-effective, and high-quality building solutions across South Sudan — from Juba to Wau and Tonj.
+                </p>
+                <div class="fade-in flex flex-col sm:flex-row gap-4" style="transition-delay:0.3s">
+                    <a href="tel:+211983998399" class="btn-primary inline-flex items-center justify-center space-x-3 text-white px-8 py-4 rounded-2xl text-base font-bold shadow-2xl">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                        </svg>
+                        <span>Call Us Now</span>
+                    </a>
+                    <a href="#contact" class="btn-outline inline-flex items-center justify-center space-x-3 text-white px-8 py-4 rounded-2xl text-base font-bold">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/>
+                        </svg>
+                        <span>Get a Quote</span>
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 float-animation">
+            <a href="#about" class="flex flex-col items-center text-white/60 hover:text-white transition-colors">
+                <span class="text-xs font-medium mb-2 tracking-wider uppercase">Scroll Down</span>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                </svg>
+            </a>
+        </div>
+    </section>
 
-        <!-- OUR SERVICES (4 cards) -->
-        <section class="services-preview">
-            <div class="container text-center">
-                <h2>Our Services</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop" alt="Architecture">
-                        <div class="service-card-content">
-                            <h3>Architectural Design</h3>
-                            <p>Innovative designs blending aesthetics with functionality.</p>
+    <!-- Stats Bar -->
+    <section class="relative z-20 -mt-12 lg:-mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl shadow-blue-900/5 p-8 lg:p-12 grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="fade-in text-center" style="transition-delay:0.1s">
+                    <div class="stat-number text-3xl lg:text-4xl font-bold text-blue-700" data-count="150">0</div>
+                    <div class="text-sm text-gray-500 mt-1 font-medium">Projects Completed</div>
+                </div>
+                <div class="fade-in text-center" style="transition-delay:0.2s">
+                    <div class="stat-number text-3xl lg:text-4xl font-bold text-blue-700" data-count="10">0</div>
+                    <div class="text-sm text-gray-500 mt-1 font-medium">Years Experience</div>
+                </div>
+                <div class="fade-in text-center" style="transition-delay:0.3s">
+                    <div class="stat-number text-3xl lg:text-4xl font-bold text-blue-700" data-count="50">0</div>
+                    <div class="text-sm text-gray-500 mt-1 font-medium">Expert Engineers</div>
+                </div>
+                <div class="fade-in text-center" style="transition-delay:0.4s">
+                    <div class="stat-number text-3xl lg:text-4xl font-bold text-blue-700" data-count="3">0</div>
+                    <div class="text-sm text-gray-500 mt-1 font-medium">Cities Covered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 lg:py-32 pattern-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <!-- Image -->
+                <div class="fade-in-left relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://image.qwenlm.ai/public_source/99a96937-7322-48a6-af85-e33b1211acfe/1067bcc28-4a3d-49a1-9af5-b2d94a06130f.png" alt="Our Professional Team" class="w-full h-[500px] lg:h-[600px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+                    </div>
+                    <!-- Experience Badge -->
+                    <div class="absolute -bottom-6 -right-6 lg:-bottom-8 lg:-right-8 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 lg:p-8 rounded-2xl shadow-xl">
+                        <div class="text-4xl lg:text-5xl font-bold">10+</div>
+                        <div class="text-sm lg:text-base font-medium opacity-90">Years of<br>Excellence</div>
+                    </div>
+                    <!-- Decorative element -->
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-amber-400/20 rounded-2xl -z-10"></div>
+                </div>
+                
+                <!-- Content -->
+                <div class="fade-in-right">
+                    <div class="inline-flex items-center space-x-2 bg-blue-50 rounded-full px-4 py-2 mb-6">
+                        <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                        <span class="text-blue-700 text-sm font-semibold uppercase tracking-wider">About Us</span>
+                    </div>
+                    <h2 class="text-3xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                        Building Stronger Communities,<br>
+                        <span class="gradient-text">Sustainable Growth</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        Global Pioneers Corporation is a leading architectural, construction, and urban planning company based in Juba, South Sudan, with operational presence in Wau and Tonj. We specialize in delivering innovative, cost-effective, and high-quality building solutions.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        Our team of certified architects, engineers, project managers, and construction specialists brings international experience and local expertise to every assignment. We combine modern construction techniques, sustainable materials, and strategic project management to ensure exceptional results from concept to completion.
+                    </p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6 mb-10">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Certified Team</h4>
+                                <p class="text-gray-500 text-sm">International experience with local expertise</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Timely Delivery</h4>
+                                <p class="text-gray-500 text-sm">Efficient execution without compromising quality</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="service-card">
-                        <img src="assets/glob.jpg" alt="Construction">
-                        <div class="service-card-content">
-                            <h3>General Construction</h3>
-                            <p>Residential, commercial & industrial buildings.</p>
+                    
+                    <a href="#contact" class="btn-primary inline-flex items-center space-x-2 text-white px-8 py-4 rounded-2xl text-sm font-bold shadow-lg">
+                        <span>Learn More About Us</span>
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Vision & Mission -->
+            <div class="mt-24 lg:mt-32 grid lg:grid-cols-2 gap-8">
+                <div class="fade-in bg-gradient-to-br from-blue-50 to-white p-10 lg:p-14 rounded-3xl border border-blue-100 relative overflow-hidden" style="transition-delay:0.1s">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100/50 rounded-full -mr-16 -mt-16"></div>
+                    <div class="relative">
+                        <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-600/20">
+                            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                        <p class="text-gray-600 leading-relaxed text-lg">
+                            To become South Sudan's most trusted and innovative construction and architectural company, shaping sustainable cities and delivering structures that inspire generations.
+                        </p>
+                    </div>
+                </div>
+                <div class="fade-in bg-gradient-to-br from-amber-50 to-white p-10 lg:p-14 rounded-3xl border border-amber-100 relative overflow-hidden" style="transition-delay:0.2s">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-100/50 rounded-full -mr-16 -mt-16"></div>
+                    <div class="relative">
+                        <div class="w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-amber-500/20">
+                            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                        <p class="text-gray-600 leading-relaxed text-lg">
+                            To provide reliable, professional, and high-quality architectural and construction services that exceed client expectations while contributing to national development and infrastructure growth.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <div class="fade-in inline-flex items-center space-x-2 bg-blue-50 rounded-full px-4 py-2 mb-6">
+                    <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                    <span class="text-blue-700 text-sm font-semibold uppercase tracking-wider">Our Services</span>
+                </div>
+                <h2 class="fade-in text-3xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6" style="transition-delay:0.1s">
+                    Comprehensive Construction<br>& Architectural Solutions
+                </h2>
+                <p class="fade-in text-gray-600 text-lg leading-relaxed" style="transition-delay:0.2s">
+                    From initial design to final finishing, we deliver end-to-end solutions that meet the highest professional standards.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+                <!-- Service 1 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.05s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Architectural Design</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Innovative architectural concepts tailored to your vision and requirements.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.1s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">2D & 3D Building Plans</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Detailed architectural plans with modern 3D visualization tools.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.15s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">BOQ Preparation</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Accurate bill of quantities for transparent project costing.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.2s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Cost Estimation</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Precise cost analysis to keep your project within budget.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.25s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.38-5.38m0 0l5.38-5.38m0 10.76l5.38-5.38m0 0l-5.38-5.38m10.76 0v12a2.25 2.25 0 01-2.25 2.25H6.75a2.25 2.25 0 01-2.25-2.25V6.75a2.25 2.25 0 012.25-2.25h12a2.25 2.25 0 012.25 2.25v1.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">General Construction</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Full-scale construction services for all project types and sizes.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.3s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Urban Planning</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Strategic urban development plans for sustainable communities.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 7 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.35s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Roofing Solutions</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Expert roofing installation and repair for all building types.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 8 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.4s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Plumbing Services</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Complete plumbing solutions for residential and commercial projects.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 9 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.45s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Interior Finishing</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Premium interior design and finishing for beautiful spaces.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Service 10 -->
+                <div class="service-card fade-in bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl" style="transition-delay:0.5s">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Renovation & Remodeling</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Transform existing spaces with modern renovation solutions.</p>
+                    <a href="#contact" class="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 group">
+                        Get Quote
+                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- See All Services -->
+            <div class="text-center fade-in">
+                <a href="#contact" class="inline-flex items-center space-x-2 btn-primary text-white px-10 py-4 rounded-2xl text-base font-bold shadow-lg">
+                    <span>See All Services</span>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 lg:py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <div class="fade-in inline-flex items-center space-x-2 bg-blue-50 rounded-full px-4 py-2 mb-6">
+                    <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                    <span class="text-blue-700 text-sm font-semibold uppercase tracking-wider">Our Projects</span>
+                </div>
+                <h2 class="fade-in text-3xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6" style="transition-delay:0.1s">
+                    Landmark Projects Across<br><span class="gradient-text">South Sudan</span>
+                </h2>
+                <p class="fade-in text-gray-600 text-lg leading-relaxed" style="transition-delay:0.2s">
+                    From hospitals to residential estates, our portfolio showcases our commitment to excellence in every project.
+                </p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Project 1 -->
+                <div class="project-card fade-in group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl" style="transition-delay:0.1s">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://image.qwenlm.ai/public_source/99a96937-7322-48a6-af85-e33b1211acfe/1d423b923-cd10-44ea-b2c9-dbc2e4e8d66e.png" alt="Modern Hospital Building" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent opacity-0 flex items-end p-6">
+                            <div class="text-white">
+                                <h4 class="text-xl font-bold mb-1">General Hospital</h4>
+                                <p class="text-white/80 text-sm">Juba, South Sudan</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="service-card">
-                        <img src="https://images.unsplash.com/photo-1534239697798-120952b76f2b?q=80&w=2070&auto=format&fit=crop" alt="Urban Planning">
-                        <div class="service-card-content">
-                            <h3>Urban Planning</h3>
-                            <p>Sustainable city layouts and infrastructure.</p>
+                    <div class="bg-white p-6">
+                        <span class="inline-block bg-blue-50 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">Healthcare</span>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Modern Hospital Complex</h4>
+                        <p class="text-gray-500 text-sm">State-of-the-art healthcare facility with modern amenities and sustainable design.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card fade-in group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl" style="transition-delay:0.15s">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://image.qwenlm.ai/public_source/99a96937-7322-48a6-af85-e33b1211acfe/1e0dfa805-f846-4584-8fba-938bbfc5efdc.png" alt="School Building" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent opacity-0 flex items-end p-6">
+                            <div class="text-white">
+                                <h4 class="text-xl font-bold mb-1">Educational Campus</h4>
+                                <p class="text-white/80 text-sm">Wau, South Sudan</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="service-card">
-                        <img src="assets/global.jpg" alt="Renovation">
-                        <div class="service-card-content">
-                            <h3>Renovation</h3>
-                            <p>Modernize existing structures with expert craftsmanship.</p>
+                    <div class="bg-white p-6">
+                        <span class="inline-block bg-green-50 text-green-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">Education</span>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Modern School Facility</h4>
+                        <p class="text-gray-500 text-sm">Contemporary educational campus designed for modern learning environments.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card fade-in group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl" style="transition-delay:0.2s">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://image.qwenlm.ai/public_source/99a96937-7322-48a6-af85-e33b1211acfe/1e2848387-1459-43f8-b28f-9c96deb99abb.png" alt="Office Complex" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent opacity-0 flex items-end p-6">
+                            <div class="text-white">
+                                <h4 class="text-xl font-bold mb-1">Corporate Office</h4>
+                                <p class="text-white/80 text-sm">Juba, South Sudan</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6">
+                        <span class="inline-block bg-purple-50 text-purple-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">Commercial</span>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Office Complex</h4>
+                        <p class="text-gray-500 text-sm">Premium commercial office space with modern glass facade architecture.</p>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card fade-in group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl" style="transition-delay:0.25s">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://image.qwenlm.ai/public_source/99a96937-7322-48a6-af85-e33b1211acfe/142b70dfa-fe91-4b63-9011-e4f374ed2df2.png" alt="Residential Estate" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent opacity-0 flex items-end p-6">
+                            <div class="text-white">
+                                <h4 class="text-xl font-bold mb-1">Residential Estate</h4>
+                                <p class="text-white/80 text-sm">Juba, South Sudan</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6">
+                        <span class="inline-block bg-amber-50 text-amber-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">Residential</span>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Luxury Residential Estate</h4>
+                        <p class="text-gray-500 text-sm">Premium residential community with modern homes and landscaped gardens.</p>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card fade-in group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl" style="transition-delay:0.3s">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://image.qwenlm.ai/public_source/99a96937-7322-48a6-af85-e33b1211acfe/178b40c50-3f03-4b4d-ba9d-0a492ae818ec.png" alt="Urban Infrastructure" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent opacity-0 flex items-end p-6">
+                            <div class="text-white">
+                                <h4 class="text-xl font-bold mb-1">Infrastructure Project</h4>
+                                <p class="text-white/80 text-sm">Tonj, South Sudan</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6">
+                        <span class="inline-block bg-red-50 text-red-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">Infrastructure</span>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Urban Infrastructure</h4>
+                        <p class="text-gray-500 text-sm">Major road and bridge infrastructure connecting urban communities.</p>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card fade-in group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl" style="transition-delay:0.35s">
+                    <div class="relative overflow-hidden h-72">
+                        <img src="https://image.qwenlm.ai/public_source/99a96937-7322-48a6-af85-e33b1211acfe/11158629f-5424-4d40-818f-720aa8ee2aa6.png" alt="Industrial Facility" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/20 to-transparent opacity-0 flex items-end p-6">
+                            <div class="text-white">
+                                <h4 class="text-xl font-bold mb-1">Industrial Warehouse</h4>
+                                <p class="text-white/80 text-sm">Juba, South Sudan</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6">
+                        <span class="inline-block bg-cyan-50 text-cyan-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">Industrial</span>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Industrial Warehouse</h4>
+                        <p class="text-gray-500 text-sm">Large-scale industrial facility with modern loading and storage capabilities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- See All Projects -->
+            <div class="text-center fade-in">
+                <a href="#contact" class="inline-flex items-center space-x-2 btn-primary text-white px-10 py-4 rounded-2xl text-base font-bold shadow-lg">
+                    <span>See All Projects</span>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-24 lg:py-32 bg-primary-900 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <div class="fade-in inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                    <div class="w-1.5 h-1.5 bg-amber-400 rounded-full"></div>
+                    <span class="text-white/90 text-sm font-semibold uppercase tracking-wider">Why Choose Us</span>
+                </div>
+                <h2 class="fade-in text-3xl lg:text-5xl font-bold text-white leading-tight mb-6" style="transition-delay:0.1s">
+                    What Makes Us the<br><span class="text-amber-400">Preferred Choice</span>
+                </h2>
+                <p class="fade-in text-white/60 text-lg leading-relaxed" style="transition-delay:0.2s">
+                    Our commitment to excellence, professionalism, and client satisfaction sets us apart in the industry.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="fade-in text-center group" style="transition-delay:0.1s">
+                    <div class="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-400/20 transition-colors duration-300">
+                        <svg class="w-10 h-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Expert Team</h3>
+                    <p class="text-white/50 leading-relaxed">Certified engineers and architects with extensive local and international experience.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="fade-in text-center group" style="transition-delay:0.2s">
+                    <div class="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-400/20 transition-colors duration-300">
+                        <svg class="w-10 h-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">On-Time Delivery</h3>
+                    <p class="text-white/50 leading-relaxed">We respect project timelines and ensure efficient execution without compromising quality.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="fade-in text-center group" style="transition-delay:0.3s">
+                    <div class="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-400/20 transition-colors duration-300">
+                        <svg class="w-10 h-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Innovative Solutions</h3>
+                    <p class="text-white/50 leading-relaxed">We apply modern design standards and sustainable construction practices for lasting value.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="fade-in text-center group" style="transition-delay:0.4s">
+                    <div class="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-amber-400/20 transition-colors duration-300">
+                        <svg class="w-10 h-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Client Satisfaction</h3>
+                    <p class="text-white/50 leading-relaxed">Transparency, trust, and quality workmanship remain the foundation of every client relationship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 lg:py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-20">
+                <div class="fade-in inline-flex items-center space-x-2 bg-blue-50 rounded-full px-4 py-2 mb-6">
+                    <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                    <span class="text-blue-700 text-sm font-semibold uppercase tracking-wider">FAQ</span>
+                </div>
+                <h2 class="fade-in text-3xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6" style="transition-delay:0.1s">
+                    Frequently Asked<br><span class="gradient-text">Questions</span>
+                </h2>
+                <p class="fade-in text-gray-600 text-lg leading-relaxed" style="transition-delay:0.2s">
+                    Find answers to common questions about our services and processes.
+                </p>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="space-y-4 mb-16">
+                <!-- FAQ 1 -->
+                <div class="fade-in border border-gray-200 rounded-2xl overflow-hidden" style="transition-delay:0.1s">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 lg:p-8 text-left hover:bg-gray-50 transition-colors duration-200">
+                        <span class="text-lg font-bold text-gray-900 pr-8">What types of construction projects do you handle?</span>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 lg:px-8">
+                        <p class="text-gray-600 leading-relaxed pb-6 lg:pb-8">
+                            We handle a wide range of construction projects including residential estates, commercial office complexes, hospitals, schools, urban infrastructure, industrial warehouses, and renovation projects. Our expertise spans from initial architectural design to complete construction and interior finishing.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="fade-in border border-gray-200 rounded-2xl overflow-hidden" style="transition-delay:0.15s">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 lg:p-8 text-left hover:bg-gray-50 transition-colors duration-200">
+                        <span class="text-lg font-bold text-gray-900 pr-8">How do you ensure project timelines are met?</span>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 lg:px-8">
+                        <p class="text-gray-600 leading-relaxed pb-6 lg:pb-8">
+                            We employ strategic project management techniques with detailed scheduling, regular progress monitoring, and dedicated project managers for each assignment. Our experienced team anticipates potential challenges and implements proactive solutions to keep projects on track without compromising quality.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="fade-in border border-gray-200 rounded-2xl overflow-hidden" style="transition-delay:0.2s">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 lg:p-8 text-left hover:bg-gray-50 transition-colors duration-200">
+                        <span class="text-lg font-bold text-gray-900 pr-8">Do you provide BOQ and cost estimation services?</span>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 lg:px-8">
+                        <p class="text-gray-600 leading-relaxed pb-6 lg:pb-8">
+                            Yes, we provide comprehensive BOQ (Bill of Quantities) preparation and cost estimation services. Our team of quantity surveyors and cost engineers ensure accurate, transparent pricing that helps you plan your project budget effectively. We also offer these as standalone services for clients who need professional documentation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="fade-in border border-gray-200 rounded-2xl overflow-hidden" style="transition-delay:0.25s">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 lg:p-8 text-left hover:bg-gray-50 transition-colors duration-200">
+                        <span class="text-lg font-bold text-gray-900 pr-8">What areas do you serve in South Sudan?</span>
+                        <svg class="faq-icon w-6 h-6 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 lg:px-8">
+                        <p class="text-gray-600 leading-relaxed pb-6 lg:pb-8">
+                            Our head office is in Juba, with operational branches in Wau and Tonj. We serve clients across South Sudan and can mobilize our teams and resources to project sites throughout the country. Contact us to discuss your project location and requirements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- See All FAQ -->
+            <div class="text-center fade-in">
+                <a href="#contact" class="inline-flex items-center space-x-2 btn-primary text-white px-10 py-4 rounded-2xl text-base font-bold shadow-lg">
+                    <span>See All FAQ</span>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 lg:py-32 bg-gray-50 pattern-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
+                <!-- Contact Info -->
+                <div class="fade-in-left">
+                    <div class="inline-flex items-center space-x-2 bg-blue-50 rounded-full px-4 py-2 mb-6">
+                        <div class="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                        <span class="text-blue-700 text-sm font-semibold uppercase tracking-wider">Contact Us</span>
+                    </div>
+                    <h2 class="text-3xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                        Let's Build Something<br><span class="gradient-text">Great Together</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
+                        Ready to start your project? Get in touch with us today. Our team is ready to provide expert consultation and deliver exceptional results.
+                    </p>
+
+                    <!-- Contact Cards -->
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Head Office</h4>
+                                <p class="text-gray-600">Juba, South Sudan</p>
+                                <p class="text-gray-500 text-sm mt-1">Branches: Wau • Tonj</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Phone</h4>
+                                <a href="tel:+211983998399" class="text-blue-600 font-semibold hover:text-blue-700 transition-colors">+211 983 998 399</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Email</h4>
+                                <a href="mailto:info@globalpioneer.com" class="text-blue-600 font-semibold hover:text-blue-700 transition-colors">info@globalpioneer.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Working Hours</h4>
+                                <p class="text-gray-600">Monday – Saturday</p>
+                                <p class="text-gray-500 text-sm">8:00 AM – 6:00 PM</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <a href="services.html" class="btn btn-secondary">See All Services <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </section>
 
-        <!-- GALLERY PREVIEW (3 images) -->
-        <section class="gallery-preview">
-            <div class="container text-center">
-                <h2>Recent Projects</h2>
-                <div class="gallery-grid-3">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2070&auto=format&fit=crop" alt="Project 1">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1460574283810-2aab119d8511?q=80&w=2071&auto=format&fit=crop" alt="Project 2">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop" alt="Project 3">
+                <!-- Contact Form -->
+                <div class="fade-in-right">
+                    <div class="bg-white p-8 lg:p-12 rounded-3xl shadow-xl border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Get a Free Quote</h3>
+                        <p class="text-gray-500 mb-8">Fill out the form below and our team will get back to you within 24 hours.</p>
+                        
+                        <form id="contactForm" onsubmit="handleSubmit(event)" class="space-y-5">
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                                    <input type="text" required class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-200 text-gray-700" placeholder="Your name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                                    <input type="tel" required class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-200 text-gray-700" placeholder="+211...">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                                <input type="email" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-200 text-gray-700" placeholder="your@email.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Service Required *</label>
+                                <select required class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-200 text-gray-700 bg-white">
+                                    <option value="">Select a service</option>
+                                    <option>Architectural Design</option>
+                                    <option>2D & 3D Building Plans</option>
+                                    <option>BOQ Preparation</option>
+                                    <option>Cost Estimation</option>
+                                    <option>General Construction</option>
+                                    <option>Urban Planning</option>
+                                    <option>Roofing Solutions</option>
+                                    <option>Plumbing Services</option>
+                                    <option>Interior Finishing</option>
+                                    <option>Renovation & Remodeling</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Project Details</label>
+                                <textarea rows="4" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-200 text-gray-700 resize-none" placeholder="Tell us about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-primary text-white px-8 py-4 rounded-2xl text-base font-bold shadow-lg flex items-center justify-center space-x-2">
+                                <span>Send Request</span>
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+                                </svg>
+                            </button>
+                        </form>
+                        <div id="formSuccess" class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-center font-medium">
+                            ✓ Thank you! Your request has been submitted. We'll contact you soon.
+                        </div>
                     </div>
                 </div>
-                <a href="gallery.html" class="btn">See Our Gallery <i class="fas fa-arrow-right"></i></a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- CALL TO ACTION with background image -->
-        <section class="cta-section">
-            <div class="container text-center">
-                <h2>Ready to Build Your Dream?</h2>
-                <p style="font-size:1.3rem; margin-bottom:30px;">Let's discuss your project – from concept to completion.</p>
-                <a href="contact.html" class="btn btn-outline-light">Get Started <i class="fas fa-arrow-right"></i></a>
+    <!-- CTA Banner -->
+    <section class="py-20 bg-gradient-to-r from-blue-700 to-blue-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="fade-in text-3xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                Ready to Start Your Project?
+            </h2>
+            <p class="fade-in text-white/70 text-lg lg:text-xl mb-10 max-w-2xl mx-auto" style="transition-delay:0.1s">
+                Let's discuss your vision and turn it into reality. Contact us today for a free consultation and quote.
+            </p>
+            <div class="fade-in flex flex-col sm:flex-row gap-4 justify-center" style="transition-delay:0.2s">
+                <a href="tel:+211983998399" class="btn-accent inline-flex items-center justify-center space-x-3 text-white px-10 py-4 rounded-2xl text-base font-bold shadow-xl">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                    </svg>
+                    <span>Call +211 983 998 399</span>
+                </a>
+                <a href="#contact" class="btn-outline inline-flex items-center justify-center space-x-3 text-white px-10 py-4 rounded-2xl text-base font-bold">
+                    <span>Get Free Quote</span>
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                    </svg>
+                </a>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- FOOTER (inspired by B-winCo) -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Global Pioneers Corp</h4>
-                    <p>Designing and building quality structures across South Sudan. From homes to commercial buildings — we deliver trusted results with professional standards.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-900 pt-20 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Company -->
+                <div class="sm:col-span-2 lg:col-span-1">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-white font-bold text-lg block">Global Pioneers</span>
+                            <span class="text-gray-400 text-xs tracking-widest uppercase">Corporation</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6 text-sm">
+                        Designing Excellence. Building the Future. South Sudan's leading construction and architectural company.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-colors duration-200">
+                            <svg class="w-5 h-5 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-blue-500 rounded-xl flex items-center justify-center transition-colors duration-200">
+                            <svg class="w-5 h-5 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-pink-600 rounded-xl flex items-center justify-center transition-colors duration-200">
+                            <svg class="w-5 h-5 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-blue-700 rounded-xl flex items-center justify-center transition-colors duration-200">
+                            <svg class="w-5 h-5 text-gray-400 hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Services</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Projects</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">FAQ</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Our Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="services.html#architectural">Architectural Design</a></li>
-                        <li><a href="services.html#plan-designs">2D/3D Plans</a></li>
-                        <li><a href="services.html#boq">BOQ Preparation</a></li>
-                        <li><a href="services.html#cost-estimates">Cost Estimates</a></li>
-                        <li><a href="services.html#urban-planning">Urban Planning</a></li>
-                        <li><a href="services.html#general-construction">General Construction</a></li>
-                        <li><a href="services.html#roofing">Roofing</a></li>
-                        <li><a href="services.html#plumbing">Plumbing</a></li>
-                        <li><a href="services.html#finishing">Finishing & Renovation</a></li>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Architectural Design</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">General Construction</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Urban Planning</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">BOQ Preparation</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Renovation</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors duration-200 text-sm">Interior Finishing</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact Info</h4>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-phone-alt"></i> 0983 998 399</li>
-                        <li><i class="fas fa-envelope"></i> info@globalpioneer.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Juba, South Sudan (HQ) • Wau • Tonj</li>
-                        <li><i class="fab fa-whatsapp"></i> +211 983 998 399</li>
-                        <li><i class="fas fa-clock"></i> Mon - Sat: 8:00 AM - 6:00 PM</li>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6">Contact Info</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                            </svg>
+                            <span class="text-gray-400 text-sm">Juba, South Sudan<br>Branches: Wau • Tonj</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                            </svg>
+                            <a href="tel:+211983998399" class="text-gray-400 hover:text-white transition-colors text-sm">+211 983 998 399</a>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                            </svg>
+                            <a href="mailto:info@globalpioneer.com" class="text-gray-400 hover:text-white transition-colors text-sm">info@globalpioneer.com</a>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="text-gray-400 text-sm">Mon – Sat: 8AM – 6PM</span>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 Global Pioneers Corporation. All rights reserved. | Juba, South Sudan</p>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">© 2026 Global Pioneers Corporation. All rights reserved.</p>
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors text-sm">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Back to Top -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-2xl shadow-lg flex items-center justify-center hover:bg-blue-700 transition-all duration-300 opacity-0 invisible translate-y-4 z-40">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+        </svg>
+    </button>
+
     <script>
-        // Typing animation for hero
-        const typedEl = document.querySelector('.typed-text');
-        const phrases = [
-            'Architectural & Interior Design',
-            '2D & 3D Plan Designs',
-            'Construction Cost Estimation',
-            'Urban Planning Solutions',
-            'General Construction',
-            'Roofing & Structural Detailing',
-            'Plumbing & Finishing Works',
-            'Renovation & Modernization'
-        ];
-        let i = 0, j = 0, isDeleting = false;
-        function type() {
-            if (!typedEl) return;
-            if (i < phrases.length) {
-                if (!isDeleting && j <= phrases[i].length) {
-                    typedEl.textContent = phrases[i].slice(0, j);
-                    j++;
-                    if (j > phrases[i].length) { isDeleting = true; setTimeout(type, 1500); return; }
-                }
-                if (isDeleting && j >= 0) {
-                    typedEl.textContent = phrases[i].slice(0, j);
-                    j--;
-                    if (j === 0) { isDeleting = false; i = (i + 1) % phrases.length; }
-                }
-            }
-            setTimeout(type, isDeleting ? 40 : 80);
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            
+            menu.classList.toggle('open');
+            overlay.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
         }
-        type();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 80) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+            
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            if (currentScroll > 600) {
+                backToTop.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+                backToTop.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible', 'translate-y-4');
+                backToTop.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            counter.textContent = target + '+';
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current) + '+';
+                        }
+                    }, 16);
+                    
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(el => {
+            counterObserver.observe(el);
+        });
+
+        // FAQ Toggle
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+            const isOpen = answer.classList.contains('open');
+            
+            // Close all
+            document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotated'));
+            
+            // Toggle current
+            if (!isOpen) {
+                answer.classList.add('open');
+                icon.classList.add('rotated');
+            }
+        }
+
+        // Form Submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const success = document.getElementById('formSuccess');
+            
+            form.style.display = 'none';
+            success.classList.remove('hidden');
+            
+            setTimeout(() => {
+                form.style.display = 'block';
+                form.reset();
+                success.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
+
